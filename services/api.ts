@@ -34,7 +34,7 @@ export const fetchMovies = async ({query}: {query: string}) => {
 //   method: 'GET',
 //   headers: {
 //     accept: 'application/json',
-//     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MjFiMDhkMzk2ZDY0NGNmYmRlMzY2MDM0ZDBkMDY3NyIsIm5iZiI6MTc1MDcwODcwMS42MDYwMDAyLCJzdWIiOiI2ODU5YjFkZDUzNzYyYjA2NmRhODRhNDEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.m1hqwYKFrkvgIbDOt1Xf0eMT_4WwYer9rCUE6IW1QCY'
+//     Authorizarion:
 //   }
 // };
 
