@@ -17,7 +17,7 @@ const TrendingCard = ({
                 resizeMode='cover'
             />
 
-            //absolute works as Overlay so this view will go over the poster
+            {/*absolute works as Overlay so this view will go over the poster*/}
             <View className='absolute bottom-9 -left-2 px-2 py-1 runded-full'>
                 <MaskedView maskElement={
                   <Text className='font-bold text-white text-6xl'>
