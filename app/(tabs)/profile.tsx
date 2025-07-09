@@ -20,8 +20,25 @@ const profile = () => {
         <Text className="text-light-200 font-normal text-xl">
           Username
         </Text>
+        <View className='flex flex-col w-3/4 bg-dark-100 rounded-md px-10 py-5'>
+          <View className='flex flex-row justify-between'>
+            <Text className='text-white font-semibold text-base'>
+              Movies watched:
+            </Text>
+            <Text className='text-light-200 font-semibold text-base'>
+              000{/*user property will go here*/}
+            </Text>
+          </View>
+          <View className='flex flex-row justify-between mt-5'>
+            <Text className='text-white font-semibold text-base'>
+              Watchtime:
+            </Text>
+            <Text className='text-light-200 font-semibold text-base'>
+              000{/*user property will go here*/}
+            </Text>
+          </View>
+        </View>
       </View>
-
     </View>
   )
 }
