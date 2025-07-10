@@ -2,6 +2,7 @@ import { Client, Databases, ID, Query } from 'react-native-appwrite';
 
 const DATABASE_ID = process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!;
 const COLLECTION_ID = process.env.EXPO_PUBLIC_APPWRITE_COLLECTION_ID!;
+const USERS_COLLECTION_ID = process.env.EXPO_PUBLIC_APPWRITE_USERS_COLLECTION_ID!;
 
 const client = new Client()
     .setEndpoint(process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!)
@@ -74,5 +75,32 @@ export const getTrendingMovies =
         } catch (error) {
             console.log(error);
             return undefined;
+        }
+    }
+
+    export const getUserInfo = async (userId: number): Promise<UserInfo | undefined> => {
+        try {
+            const result = await database.listDocuments(
+                DATABASE_ID,
+                USERS_COLLECTION_ID,
+                [
+                    Query.equal('userId', userId)
+                ]
+            )
+
+            return result.documents[0] as unknown as UserInfo;
+        } catch (error) {
+            console.log(error);
+            return undefined;
+        }
+    }
+
+    export const updateWatchedMovies = async (userId: number, movieId: number) => {
+        try {
+            //add a movie to user's watched movies if it's id is not in the array
+            //if it's not, add the movie length to the watchtime
+        } catch (error) {
+            console.log(error);
+            throw error;
         }
     }

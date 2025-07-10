@@ -1,9 +1,19 @@
 import { icons } from '@/constants/icons'
 import { images } from '@/constants/images'
+import { getUserInfo } from '@/services/appwrite'
+import useFetch from '@/services/useFetch'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 
 const profile = () => {
+  const {
+    data: user,
+    loading: userLoading,
+    error: userError
+  } = useFetch(() => getUserInfo(123));
+
+  console.log(user);
+
   return (
     <View className='bg-primary flex-1'>
       <Image source={images.bg} className="absolute w-full z-0" />
@@ -18,7 +28,7 @@ const profile = () => {
           tintColor="#FFF"
         />
         <Text className="text-light-200 font-normal text-xl">
-          Username
+          {user?.username || `Username`}
         </Text>
         <View className='flex flex-col w-3/4 bg-dark-100 rounded-md px-10 py-5'>
           <View className='flex flex-row justify-between'>
@@ -26,7 +36,7 @@ const profile = () => {
               Movies watched:
             </Text>
             <Text className='text-light-200 font-semibold text-base'>
-              000{/*user property will go here*/}
+              {user?.watchedMovies.length || '0'}
             </Text>
           </View>
           <View className='flex flex-row justify-between mt-5'>
@@ -34,7 +44,7 @@ const profile = () => {
               Watchtime:
             </Text>
             <Text className='text-light-200 font-semibold text-base'>
-              000{/*user property will go here*/}
+              {user?.watchtime || '0'} minutes
             </Text>
           </View>
         </View>

@@ -75,3 +75,10 @@ interface TrendingCardProps {
   movie: TrendingMovie;
   index: number;
 }
+
+interface UserInfo {
+  userId: number;
+  username: string;
+  watchtime: number;
+  watchedMovies: number[];
+}
