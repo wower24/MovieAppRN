@@ -95,10 +95,36 @@ export const getTrendingMovies =
         }
     }
 
-    export const updateWatchedMovies = async (userId: number, movieId: number) => {
+    export const updateWatchedMovies = async (userId: number, movie: MovieDetails | null) => {
         try {
-            //add a movie to user's watched movies if it's id is not in the array
-            //if it's not, add the movie length to the watchtime
+            const userDocs = await database.listDocuments(
+            DATABASE_ID,
+            USERS_COLLECTION_ID,
+            [Query.equal('userId', userId)]
+        );
+
+        if (userDocs.documents.length === 0) {
+            throw new Error('User not found');
+        }
+            const userDoc = userDocs.documents[0]
+            const docId = userDoc.$id;
+
+            const watchedMovies = userDoc.watchedMovies;
+            if( !watchedMovies.includes(movie?.id)) {
+                watchedMovies.push(movie?.id)
+            }
+
+            const watchtime = userDoc.watchtime + movie?.runtime;
+
+            const result = await database.updateDocument(
+                DATABASE_ID,
+                USERS_COLLECTION_ID,
+                docId,
+                {
+                   watchedMovies: watchedMovies,
+                   watchtime: watchtime
+                }
+            )
         } catch (error) {
             console.log(error);
             throw error;

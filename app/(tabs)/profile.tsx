@@ -2,17 +2,26 @@ import { icons } from '@/constants/icons'
 import { images } from '@/constants/images'
 import { getUserInfo } from '@/services/appwrite'
 import useFetch from '@/services/useFetch'
-import React from 'react'
+import { useFocusEffect } from 'expo-router'
+import React, { useCallback } from 'react'
 import { Image, Text, View } from 'react-native'
 
 const profile = () => {
   const {
     data: user,
     loading: userLoading,
-    error: userError
+    error: userError,
+    refetch: refetchUser
   } = useFetch(() => getUserInfo(123));
 
-  console.log(user);
+  /* 
+  REFETCH USER EVERY TIME THE PROFILE PAGE IS ON
+  */
+  useFocusEffect(
+  useCallback(() => {
+    refetchUser();
+  }, [refetchUser])
+);
 
   return (
     <View className='bg-primary flex-1'>
