@@ -20,7 +20,7 @@ const profile = () => {
   useFocusEffect(
   useCallback(() => {
     refetchUser();
-  }, [refetchUser])
+  }, [])
 );
 
   return (
